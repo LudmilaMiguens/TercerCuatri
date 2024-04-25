@@ -1,0 +1,20 @@
+/* Estilo para el modal */
+.modal {
+    display: flex; /* Por defecto, el modal está oculto */
+    position: fixed; /* Se posiciona fijo en la ventana */
+    top: 50%; /* Lo colocamos en el centro verticalmente */
+    left: 50%; /* Lo colocamos en el centro horizontalmente */
+    transform: translate(-50%, -50%); /* Centramos exactamente el contenido */
+    background-color: rgb(203, 207, 205); /* Color de fondo del modal */
+    padding: 20px; /* Espacio interno dentro del modal */
+    border-radius: 5px; /* Bordes redondeados */
+    z-index: 9999; /* Asegura que el modal esté por encima de otros elementos */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra para el modal */
+}
+/* Estilo para el botón de cerrar */
+.close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+}
