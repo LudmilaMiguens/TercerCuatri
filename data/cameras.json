@@ -1,0 +1,74 @@
+{
+  "cameras": [
+    {
+      "id": 1,
+      "nombre": "Canon EOS R5",
+      "marca": "Canon",
+      "imagen": "https://example.com/canon-eos-r5.jpg",
+      "descripcion": "La Canon EOS R5 es una cámara sin espejo de fotograma completo que ofrece 45 megapíxeles, grabación de video en 8K y un sistema de enfoque automático avanzado."
+    },
+    {
+      "id": 2,
+      "nombre": "Nikon Z7 II",
+      "marca": "Nikon",
+      "imagen": "https://example.com/nikon-z7-ii.jpg",
+      "descripcion": "La Nikon Z7 II cuenta con un sensor de 45.7 megapíxeles, doble ranura para tarjetas de memoria y un sistema de enfoque automático rápido y preciso."
+    },
+    {
+      "id": 3,
+      "nombre": "Sony Alpha a7R IV",
+      "marca": "Sony",
+      "imagen": "https://example.com/sony-alpha-a7r-iv.jpg",
+      "descripcion": "La Sony Alpha a7R IV ofrece una resolución de 61 megapíxeles, estabilización de imagen en el cuerpo y capacidades de video 4K."
+    },
+    {
+      "id": 4,
+      "nombre": "Fujifilm X-T4",
+      "marca": "Fujifilm",
+      "imagen": "https://example.com/fujifilm-x-t4.jpg",
+      "descripcion": "La Fujifilm X-T4 es una cámara sin espejo con sensor APS-C de 26.1 megapíxeles, estabilización de imagen y excelente rendimiento en video 4K."
+    },
+    {
+      "id": 5,
+      "nombre": "Panasonic Lumix GH5",
+      "marca": "Panasonic",
+      "imagen": "https://example.com/panasonic-lumix-gh5.jpg",
+      "descripcion": "La Panasonic Lumix GH5 es conocida por su capacidad de grabación de video 4K a 60 fps, estabilización de imagen y un sensor de 20.3 megapíxeles."
+    },
+    {
+      "id": 6,
+      "nombre": "Olympus OM-D E-M1 Mark III",
+      "marca": "Olympus",
+      "imagen": "https://example.com/olympus-om-d-e-m1-mark-iii.jpg",
+      "descripcion": "La Olympus OM-D E-M1 Mark III es una cámara micro cuatro tercios con 20.4 megapíxeles, estabilización de imagen de 5 ejes y capacidades de grabación de video en 4K."
+    },
+    {
+      "id": 7,
+      "nombre": "Leica Q2",
+      "marca": "Leica",
+      "imagen": "https://example.com/leica-q2.jpg",
+      "descripcion": "La Leica Q2 es una cámara compacta de fotograma completo con un sensor de 47.3 megapíxeles, lente fijo Summilux 28mm f/1.7 y capacidades de video 4K."
+    },
+    {
+      "id": 8,
+      "nombre": "Pentax K-1 Mark II",
+      "marca": "Pentax",
+      "imagen": "https://example.com/pentax-k-1-mark-ii.jpg",
+      "descripcion": "La Pentax K-1 Mark II es una cámara DSLR de fotograma completo con un sensor de 36.4 megapíxeles, estabilización de imagen en el cuerpo y una construcción resistente a la intemperie."
+    },
+    {
+      "id": 9,
+      "nombre": "Sony Alpha a6400",
+      "marca": "Sony",
+      "imagen": "https://example.com/sony-alpha-a6400.jpg",
+      "descripcion": "La Sony Alpha a6400 es una cámara sin espejo con sensor APS-C de 24.2 megapíxeles, enfoque automático rápido y preciso, y capacidades de video en 4K."
+    },
+    {
+      "id": 10,
+      "nombre": "Canon EOS 90D",
+      "marca": "Canon",
+      "imagen": "https://example.com/canon-eos-90d.jpg",
+      "descripcion": "La Canon EOS 90D es una cámara DSLR con un sensor APS-C de 32.5 megapíxeles, grabación de video en 4K y un sistema de enfoque automático de 45 puntos."
+    }
+  ]
+}
