@@ -19,6 +19,7 @@ export class CameraController {
   }
 
   @Get('nombre')
+  
   async getCameraNombre(
     @Query('nombre') nombre: string){
       return this.CameraService.getCameraNombre(nombre);
