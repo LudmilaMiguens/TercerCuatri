@@ -15,11 +15,8 @@
       "descripcion": "La Nikon Z7 II cuenta con un sensor de 45.7 megapíxeles, doble ranura para tarjetas de memoria y un sistema de enfoque automático rápido y preciso."
     },
     {
-      "id": "3",
-      "nombre": "Sony Alpha a7R IV",
-      "marca": "Sony",
-      "imagen": "https://example.com/sony-alpha-a7r-iv.jpg",
-      "descripcion": "La Sony Alpha a7R IV ofrece una resolución de 61 megapíxeles, estabilización de imagen en el cuerpo y capacidades de video 4K."
+      "name": "Add your name in the body",
+      "id": "3"
     },
     {
       "id": "4",
@@ -85,11 +82,11 @@
       "descripcion": "la mejor"
     },
     {
-      "id": "1111",
-      "nombre": "nikon566",
-      "marca": "nikon",
-      "imagen": "https://example.com/sony-alpha-a7r-iv.jpg",
-      "descripcion": "la mejor"
+      "id": "11111",
+      "nombre": "nikon d3500",
+      "marca": "Nikon",
+      "imagen": "https://example.com/nikon-z7-ii.jpg",
+      "descripcion": "La nikon d3500 cuenta con un sensor de 45.7 megapíxeles, doble ranura para tarjetas de memoria y un sistema de enfoque automático rápido y preciso."
     }
   ]
 }
