@@ -1,44 +1,57 @@
-import { Controller, Get, Param, Body,Post, Put,Delete, Query } from '@nestjs/common';
-import {CameraService } from './camera.service';
+import { 
+  Controller, 
+  Get, 
+  Param, 
+  Body, 
+  Post, 
+  Put, 
+  Delete, 
+  Query, 
+  HttpCode,  
+  HttpStatus} from '@nestjs/common';
+import { CameraService } from './camera.service';
 import { iCamera } from './camera.interface';
+import { ParseIntPipe } from '@nestjs/common';
+import { cameraDto } from './camera.dto';
 
-
-@Controller('/cameras/') 
+@Controller('/cameras/')
 export class CameraController {
-  constructor(private readonly CameraService: CameraService) {}
+  constructor(private readonly CameraService: CameraService) { }
 
   @Get()
-  getCamera(): Promise<iCamera[]>{
+  getCamera(): Promise<iCamera[]> {
     return this.CameraService.getCameras();
   }
 
   @Get(':id')
   async getCameraId(
-    @Param('id') id: number): Promise<iCamera>{
-    return this.CameraService.getCameraId(id)
+    @Param('id', //con el piper al pasar un id que no existe con letras te lanza un error.
+      new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE}),
+    ) 
+    id:string): Promise<any> {
+   return this.CameraService.getCameraId(id);
+   
   }
 
-  @Get('nombre')
-  
+  @Get('/buscar/nombre')
   async getCameraNombre(
-    @Query('nombre') nombre: string){
-      return this.CameraService.getCameraNombre(nombre);
-    }
+    @Query('nombre') nombre: string): Promise<any> {
+    return this.CameraService.getCameraNombre(nombre);
+  }
 
   @Post()
-  create(@Body()camera:iCamera): Promise <any> {
-    return this.CameraService.addCamera(camera);
+  create(@Body() cameraDto: cameraDto): Promise<any> {
+    return this.CameraService.addCamera(cameraDto);
   }
 
   @Put(':id')
-  updateCameraId(@Param('id') id:number, @Body() body):Promise<any>{
+  @HttpCode(204) //no devuelve la respuesta pero te dice que esta todo ok
+  updateCameraId(@Param('id') id: string, @Body() body): Promise<void> {
     return this.CameraService.updateCameraId(id, body)
   }
 
-
   @Delete(':id')
-  deleteCameraId(@Param('id') id:number){
+  deleteCameraId(@Param('id') id: string) {
     return this.CameraService.deleteCameraId(id);
   }
 }
- 

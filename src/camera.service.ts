@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { iCamera } from './camera.interface';
-
+import { cameraDto } from './camera.dto';
 
 const base_url: string = 'http://localhost:3030/cameras/';
 
@@ -12,23 +12,36 @@ export class CameraService {
     return cameras;
   }
   // Buascar por id
-  async getCameraId(id: number): Promise<iCamera> {
+  async getCameraId(id: string): Promise<iCamera> {
     const res = await fetch(base_url + id);
-    const camera = await res.json();
-    return camera;
-  }
-  //Buscar por nombre
-  async getCameraNombre(nombre:string){
-    const res = await fetch(base_url + nombre);
+    if (!res.ok) {
+      throw new NotFoundException(`Camera con id ${id} no existe`);
+    }
     const camera = await res.json();
     return camera;
   }
 
+  //Buscar por nombre
+  // http://localhost:3000/cameras/buscar/nombre?nombre=nikon
+
+  // Buscar por nombre con espacios
+  //http://localhost:3000/cameras/buscar/nombre?nombre=canon+eos+r10
+  
+  async getCameraNombre(nombre: string): Promise<iCamera[]> {
+    // Convertir el nombre de consulta a minúsculas
+    const nombreUrl = nombre.toLowerCase(); 
+    // Reemplazar los espacios en blanco con el carácter "+"
+    const nombreQueryParam = encodeURIComponent(nombreUrl);
+    const res = await fetch(`${base_url}?nombre=${nombreQueryParam}`); // pasamos el nombre como un parametro de consulta a la url
+    const cameras = await res.json();
+
+    return cameras;
+  }
 
   //Agregar una nueva camara
-  async addCamera(camera: iCamera) {
+  async addCamera(cameraDto:cameraDto) {
     const id = await this.setId();
-    const newCamera = { id, ...camera };
+    const newCamera = { id, ...cameraDto };
     const res = await fetch(base_url, {
       method: 'POST',
       headers: {
@@ -39,33 +52,33 @@ export class CameraService {
     const parsed = await res.json();
     return parsed;
   }
-  //Generador Id
-  private async setId(): Promise<number> {
-    const cameras = await this.getCameras();
-    const id = cameras[cameras.length - 1].id + 1;
-    return id;
-  }
+
+ // Generador de ID
+private async setId(): Promise<string> {
+  const cameras = await this.getCameras();
+  const lastId = cameras[cameras.length - 1].id;
+  const newId = (parseInt(lastId, 10) + 1).toString();// Convertir a número, luego a cadena
+  return newId;
+}
+
 
   //Modificar una camera
-  async updateCameraId(id: number, body: iCamera): Promise<any> {
+  async updateCameraId(id: string, body: iCamera): Promise<any> {
     const isCamera = await this.getCameraId(id);
     if (!Object.keys(isCamera).length) return;
     const updateCamera = { ...body, id };
-    console.log('Update Camera', updateCamera);
-    const res = await fetch(base_url + id, {
+    await fetch(base_url + id, {
       method: 'PUT',
       headers: {
         'content-types': 'application/json',
       },
       body: JSON.stringify(updateCamera),
-    });
-    const parsed = await res.json()
-    return parsed;
+    }); 
   }
 
   //Borrar una camera por id
-  async deleteCameraId(id:number): Promise<any>{
-    const res = await fetch(base_url +id,{
+  async deleteCameraId(id: string): Promise<any> {
+    const res = await fetch(base_url + id, {
       method: 'DELETE',
     });
     const parsed = await res.json();

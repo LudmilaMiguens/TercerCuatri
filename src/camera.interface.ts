@@ -1,5 +1,5 @@
 export interface iCamera{
-    id: number;
+    id: string;
     nombre: string;
     marca: string;
     descripcion: string;
