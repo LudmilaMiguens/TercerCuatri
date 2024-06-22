@@ -98,7 +98,7 @@ describe('CameraController', () => {
 
         jest.spyOn(cameraService, 'updateCameraId').mockResolvedValue(updatedCamera);
   
-        const response = await cameraController.updateCameraId('1', updatedCamera);
+        const response = await cameraController.updateCameraId('11', updatedCamera);
   
         expect(response).toEqual(updatedCamera);
       });
