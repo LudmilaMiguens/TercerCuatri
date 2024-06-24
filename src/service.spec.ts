@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { CameraService } from "./camera.service";
 import { iCamera } from "./camera.interface";
 import { NotFoundException } from '@nestjs/common';
+import { cameraDto } from "./camera.dto";
 
 describe('CameraService', () => {
     let cameraService: CameraService;
@@ -72,12 +73,80 @@ describe('CameraService', () => {
         }];
 
         jest.spyOn(global, 'fetch').mockResolvedValue({
-            json: jest.fn().mockResolvedValue(result)  
-        } as unknown as Response);  
+            json: jest.fn().mockResolvedValue(result)
+        } as unknown as Response);
 
         const response = await cameraService.getCameraNombre('canon eos r10');
 
         expect(response).toEqual(result);
     });
 
- })
+    it('Agregar una camara', async () => {
+        const newcameraDto: cameraDto = {
+            nombre: 'canon eos r10',
+            marca: "Canon",
+            descripcion: "La Canon EOS R5 es una cámara sin espejo de fotograma completo que ofrece 45 megapíxeles y excelente estabilización de imagen.",
+            imagen: undefined
+        };
+        const newIdCamera = '123'
+        const newCamera: iCamera = {
+            id: newIdCamera,
+            nombre: newcameraDto.nombre,
+            marca: newcameraDto.marca,
+            descripcion: newcameraDto.descripcion
+        };
+
+        jest.spyOn(global, 'fetch').mockResolvedValue({
+            json: jest.fn().mockResolvedValue(newCamera)
+        } as unknown as Response);
+
+        jest.spyOn(cameraService, 'getCameras').mockResolvedValue([newCamera]);
+        const response = await cameraService.addCamera(newcameraDto)
+
+        expect(response).toEqual(newCamera);
+    });
+
+    it('Modificar  una camara', async () => {
+        const camera = {
+            id: '11',
+            nombre: 'canon eos r10',
+            marca: "Canon",
+            descripcion: "La Canon EOS R5 es una cámara sin espejo de fotograma completo que ofrece 45 megapíxeles y excelente estabilización de imagen.",
+        };
+        const modificarCamera = {
+            id: '11',
+            nombre: 'canon eos r11',
+            marca: "Canon",
+            descripcion: "La Canon EOS R11 es una cámara sin espejo de fotograma completo que ofrece 45 megapíxeles y excelente estabilización de imagen."
+        };
+
+        const cameraModificada = {
+            ...modificarCamera,
+            id: '11'
+        }
+        jest.spyOn(CameraService.prototype, 'getCameraId').mockResolvedValue(camera);
+
+        jest.spyOn(global, 'fetch').mockResolvedValue({
+            ok: true,
+            json: jest.fn().mockResolvedValue(cameraModificada)
+        } as unknown as Response);
+
+        const response = await new CameraService().updateCameraId('11', modificarCamera)
+
+        expect(response).toEqual(cameraModificada);
+        expect(jest.spyOn(CameraService.prototype, 'getCameraId')).toHaveBeenCalledWith('11')
+    });
+
+    it('Eliminar una camara', async () => {
+        const mensaje = ('Camera eliminada');
+        jest.spyOn(global, 'fetch').mockResolvedValue({
+            ok: true,
+            json: jest.fn().mockResolvedValue(mensaje),
+        } as unknown as Response);
+
+        const cameraService = new CameraService();
+        const response = await cameraService.deleteCameraId('11');
+
+        expect(response).toEqual(mensaje);
+    });
+});

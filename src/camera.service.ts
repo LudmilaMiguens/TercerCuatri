@@ -74,6 +74,7 @@ private async setId(): Promise<string> {
       },
       body: JSON.stringify(updateCamera),
     }); 
+    return updateCamera
   }
 
   //Borrar una camera por id
