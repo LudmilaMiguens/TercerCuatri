@@ -6,6 +6,7 @@ const base_url: string = 'http://localhost:3030/cameras/';
 
 @Injectable()
 export class CameraService {
+  
   async getCameras(): Promise<iCamera[]> {
     const res = await fetch(base_url);
     const cameras = await res.json();
