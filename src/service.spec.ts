@@ -24,7 +24,7 @@ describe('CameraService', () => {
             nombre: 'canon eos r10',
             marca: "Canon",
             descripcion: "La Canon EOS R5 es una cámara sin espejo de fotograma completo que ofrece 45 megapíxeles y excelente estabilización de imagen."
-        }];
+        }]; 
 
         // Espiar la función fetch global y mockear su valor resuelto
         jest.spyOn(global, 'fetch').mockResolvedValue({

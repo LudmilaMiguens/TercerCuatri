@@ -23,11 +23,8 @@ export class CameraService {
   }
 
   //Buscar por nombre
-  // http://localhost:3000/cameras/buscar/nombre?nombre=nikon
+  // http://localhost:3000/cameras/buscar?nombre=panasonic lumix gh5
 
-  // Buscar por nombre con espacios
-  //http://localhost:3000/cameras/buscar/nombre?nombre=canon+eos+r10
-  
   async getCameraNombre(nombre: string): Promise<iCamera[]> {
     // Convertir el nombre de consulta a minúsculas
     const nombreUrl = nombre.toLowerCase(); 
@@ -35,7 +32,6 @@ export class CameraService {
     const nombreQueryParam = encodeURIComponent(nombreUrl);
     const res = await fetch(`${base_url}?nombre=${nombreQueryParam}`); // pasamos el nombre como un parametro de consulta a la url
     const cameras = await res.json();
-
     return cameras;
   }
 
@@ -62,7 +58,6 @@ private async setId(): Promise<string> {
   return newId;
 }
 
-
   //Modificar una camera
   async updateCameraId(id: string, body: iCamera): Promise<any> {
     const isCamera = await this.getCameraId(id);
@@ -83,6 +78,9 @@ private async setId(): Promise<string> {
     const res = await fetch(base_url + id, {
       method: 'DELETE',
     });
+    if (!res.ok) {
+      throw new NotFoundException(`Camera con id ${id} no existe`);
+    }
     const parsed = await res.json();
     return parsed;
   }

@@ -1,14 +1,15 @@
-import { 
-  Controller, 
-  Get, 
-  Param, 
-  Body, 
-  Post, 
-  Put, 
-  Delete, 
-  Query, 
-  HttpCode,  
-  HttpStatus} from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Body,
+  Post,
+  Put,
+  Delete,
+  Query,
+  HttpCode,
+  HttpStatus
+} from '@nestjs/common';
 import { CameraService } from './camera.service';
 import { iCamera } from './camera.interface';
 import { ParseIntPipe } from '@nestjs/common';
@@ -23,21 +24,23 @@ export class CameraController {
     return this.CameraService.getCameras();
   }
 
-  @Get(':id')
-  async getCameraId(
-    @Param('id', //con el piper al pasar un id que no existe con letras te lanza un error.
-      new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE}),
-    ) 
-    id:string): Promise<any> {
-   return this.CameraService.getCameraId(id);
-   
-  }
-
-  @Get('/buscar/nombre')
+  @Get('/buscar')
   async getCameraNombre(
     @Query('nombre') nombre: string): Promise<any> {
     return this.CameraService.getCameraNombre(nombre);
   }
+  
+  @Get(':id')
+  async getCameraId(
+    @Param('id', //con el piper al pasar un id que no existe con letras te lanza un error.
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: string): Promise<any> {
+    return this.CameraService.getCameraId(id);
+
+  }
+
+
 
   @Post()
   create(@Body() cameraDto: cameraDto): Promise<any> {
@@ -51,7 +54,11 @@ export class CameraController {
   }
 
   @Delete(':id')
-  deleteCameraId(@Param('id') id: string) {
+  deleteCameraId(@Param('id',
+    new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })
+  )
+
+  id: string) {
     return this.CameraService.deleteCameraId(id);
   }
 }

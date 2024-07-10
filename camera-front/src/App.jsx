@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>Cameras</h1>
+        <h1>Camaras</h1>
  
           <div className='card-container'>
              {cameras.map((camera) => (<CameraCard camera={camera} key= {camera.id}

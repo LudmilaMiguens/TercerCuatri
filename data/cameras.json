@@ -79,17 +79,17 @@
     },
     {
       "id": "12",
+      "nombre": "fujifilm x t7",
+      "marca": "Fujifilm",
+      "imagen": "https://th.bing.com/th/id/OIP.r-CIEprlOc09GfyU_ZUZOQHaF6?rs=1&pid=ImgDetMain",
+      "descripcion": "La Fujifilm X-T7 es una cámara sin espejo con sensor APS-C de 26.1 megapíxeles, estabilización de imagen y excelente rendimiento en video 4K."
+    },
+    {
+      "id": "13",
       "nombre": "canon eos r5",
       "marca": "Canon",
       "imagen": "https://th.bing.com/th/id/OIP.ZIAgTJAdNzMv9daD36O1bgHaF4?rs=1&pid=ImgDetMain",
       "descripcion": "La Canon EOS R5 es una cámara sin espejo de fotograma completo que ofrece 45 megapíxeles y excelente estabilización de imagen."
-    },
-    {
-      "id": "13",
-      "nombre": "nikon d5700",
-      "marca": "Nikon",
-      "imagen": "https://example.com/nikon-z7-ii.jpg",
-      "descripcion": "La nikon d5700 cuenta con un sensor de 45.7 megapíxeles, doble ranura para tarjetas de memoria y un sistema de enfoque automático rápido y preciso."
     }
   ]
 }
